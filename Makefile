@@ -8,6 +8,10 @@ build/main: src/main.c
 	mkdir -p build
 	$(CC) $(CFLAGS) $^ $(LDFLAGS) -o $@
 
+build/out.gif: build/main
+	./$^
+	convert -delay 5 -loop 0 build/*.png $@
+
 .PHONY: clean
 clean:
 	rm -rf build
